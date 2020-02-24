@@ -1,0 +1,315 @@
+﻿Build1=Default,b4a.example3
+File1=Analiz.png
+File10=AntropometrikSilPage.bal
+File11=Ayarlar.png
+File12=Bag.png
+File13=baslat.png
+File14=Birim.png
+File15=Biyokimyasal.png
+File16=BiyokimyasalEklePage.bal
+File17=BiyokimyasalListelePage.bal
+File18=BiyokimyasalSilPage.bal
+File19=cikarOrta.png
+File2=AnasayfaPage.bal
+File20=DayaniklilikTestEklePage.bal
+File21=DayaniklilikTestListelePage.bal
+File22=DayaniklilikTestMenuPage.bal
+File23=Denek.png
+File24=DenekAraTestPage.bal
+File25=DenekDuzenleSilPage.bal
+File26=DenekEklePage.bal
+File27=DenekListelePage.bal
+File28=Denge.png
+File29=Dikeysicrama.png
+File3=Antranor.png
+File30=Dil.png
+File31=Durdur.png
+File32=Duzenle.png
+File33=duzenleSil.png
+File34=EkleOrtali.png
+File35=Ekran 1.png
+File36=ekranbos.png
+File37=FotoKisi.png
+File38=GelismisTestDenekAraCustomLvVeriPage.bal
+File39=GelismisTestDenekAraPage.bal
+File4=AntranorGorusleriEklePage.bal
+File40=GelismisTestDenekAraScrollVeriPage.bal
+File41=GirisPage.bal
+File42=Hekim.png
+File43=Kamera.png
+File44=kullanici.png
+File45=Kuvvet.png
+File46=Motor.png
+File47=MotorOzellikMenuPage.bal
+File48=ProgramAyar1Page.bal
+File49=ProgramAyarPage.bal
+File5=AntranorGorusleriListelePage.bal
+File50=ProgramListelePage.bal
+File51=ProgramSecPage.bal
+File52=ProgramSilPage.bal
+File53=ProgramVeriPage.bal
+File54=Psikolojik.png
+File55=PsikolojikEklePage.bal
+File56=PsikolojikListelePage.bal
+File57=PsikolojikSilPage.bal
+File58=Refleks.png
+File59=Reset.png
+File6=AntranorGorusleriSilPage.bal
+File60=SaglikBilgileriEklePage.bal
+File61=SaglikBilgileriListelePage.bal
+File62=SaglikBilgileriSilPage.bal
+File63=sound1.mp3
+File64=sportexpert.png
+File65=Suicide.png
+File66=surat.png
+File67=SuratTestAyarPage.bal
+File68=SuratTestEklePage.bal
+File69=SuratTestListelePage.bal
+File7=Antropometri.png
+File70=SuratTestSilPage.bal
+File71=tablodaGoster.png
+File72=Takvim.png
+File73=Test.png
+File74=TestMenuPage.bal
+File75=yardim.png
+File8=AntropometrikEklePage.bal
+File9=AntropometrikListelePage.bal
+FileGroup1=ResimDosyalari
+FileGroup10=SportExpertBalDosyalari\AntropometrikPage
+FileGroup11=ResimDosyalari
+FileGroup12=ResimDosyalari
+FileGroup13=ResimDosyalari
+FileGroup14=ResimDosyalari
+FileGroup15=ResimDosyalari
+FileGroup16=SportExpertBalDosyalari\BiyokimyasalPage
+FileGroup17=SportExpertBalDosyalari\BiyokimyasalPage
+FileGroup18=SportExpertBalDosyalari\BiyokimyasalPage
+FileGroup19=ResimDosyalari
+FileGroup2=SportExpertBalDosyalari
+FileGroup20=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage
+FileGroup21=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage
+FileGroup22=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage
+FileGroup23=ResimDosyalari
+FileGroup24=SportExpertBalDosyalari
+FileGroup25=SportExpertBalDosyalari\DenekPage
+FileGroup26=SportExpertBalDosyalari\DenekPage
+FileGroup27=SportExpertBalDosyalari\DenekPage
+FileGroup28=ResimDosyalari
+FileGroup29=ResimDosyalari
+FileGroup3=ResimDosyalari
+FileGroup30=ResimDosyalari
+FileGroup31=ResimDosyalari
+FileGroup32=ResimDosyalari
+FileGroup33=ResimDosyalari
+FileGroup34=ResimDosyalari
+FileGroup35=ResimDosyalari
+FileGroup36=ResimDosyalari
+FileGroup37=ResimDosyalari
+FileGroup38=SportExpertBalDosyalari
+FileGroup39=SportExpertBalDosyalari
+FileGroup4=SportExpertBalDosyalari\AntranorGorusleriPage
+FileGroup40=SportExpertBalDosyalari
+FileGroup41=SportExpertBalDosyalari
+FileGroup42=ResimDosyalari
+FileGroup43=ResimDosyalari
+FileGroup44=ResimDosyalari
+FileGroup45=ResimDosyalari
+FileGroup46=ResimDosyalari
+FileGroup47=SportExpertBalDosyalari\MotorOzellikPage
+FileGroup48=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage\Program
+FileGroup49=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage\Program
+FileGroup5=SportExpertBalDosyalari\AntranorGorusleriPage
+FileGroup50=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage\Program
+FileGroup51=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage
+FileGroup52=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage\Program
+FileGroup53=SportExpertBalDosyalari\MotorOzellikPage\DayaniklilikTestPage\Program
+FileGroup54=ResimDosyalari
+FileGroup55=SportExpertBalDosyalari\PsikolojikPage
+FileGroup56=SportExpertBalDosyalari\PsikolojikPage
+FileGroup57=SportExpertBalDosyalari\PsikolojikPage
+FileGroup58=ResimDosyalari
+FileGroup59=ResimDosyalari
+FileGroup6=SportExpertBalDosyalari\AntranorGorusleriPage
+FileGroup60=SportExpertBalDosyalari\SaglikBilgileriPage
+FileGroup61=SportExpertBalDosyalari\SaglikBilgileriPage
+FileGroup62=SportExpertBalDosyalari\SaglikBilgileriPage
+FileGroup63=SesDosyalari
+FileGroup64=ResimDosyalari
+FileGroup65=ResimDosyalari
+FileGroup66=ResimDosyalari
+FileGroup67=SportExpertBalDosyalari\MotorOzellikPage\SuratTestPage
+FileGroup68=SportExpertBalDosyalari\MotorOzellikPage\SuratTestPage
+FileGroup69=SportExpertBalDosyalari\MotorOzellikPage\SuratTestPage
+FileGroup7=ResimDosyalari
+FileGroup70=SportExpertBalDosyalari\MotorOzellikPage\SuratTestPage
+FileGroup71=ResimDosyalari
+FileGroup72=ResimDosyalari
+FileGroup73=ResimDosyalari
+FileGroup74=SportExpertBalDosyalari
+FileGroup75=ResimDosyalari
+FileGroup8=SportExpertBalDosyalari\AntropometrikPage
+FileGroup9=SportExpertBalDosyalari\AntropometrikPage
+Group=SportExpertProjeDosyası
+IconFile=
+Library1=core
+Library10=xcustomlistview
+Library11=stringutils
+Library12=xui
+Library2=javaobject
+Library3=runtimepermissions
+Library4=phone
+Library5=reflection
+Library6=sql
+Library7=stringfunctions
+Library8=dialogs
+Library9=dateutils
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~~\n~AddManifestText(<uses-permission~\n~	android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~	android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~
+Module1=AntranorGorusSil
+Module10=DBUtils
+Module11=AntranorGorusEkle
+Module12=ProgramVeri
+Module13=TestDenekAra
+Module14=DenekEkleGuncelle
+Module15=DayaniklilikTestMenu
+Module16=ProgramListele
+Module17=ProgramSil
+Module18=SuratTestAyar
+Module19=SuratTestEkle
+Module2=AntranorGorusListele
+Module20=SuratTestSil
+Module21=SesService
+Module22=DenekDuzenleSil
+Module23=AntropometrikListele
+Module24=SaglikBilgileriSil
+Module25=TestMenu
+Module26=MotorOzellikMenu
+Module27=SaglikBilgileriListele
+Module28=BiyokimyasalEkle
+Module29=AntropometrikEkle
+Module3=DayaniklilikTestListele
+Module30=Color
+Module31=AnaMenu
+Module32=InsertVeriler
+Module33=FileProvider
+Module34=BiyokimyasalListele
+Module35=BiyokimyasalSil
+Module36=PsikolojikSil
+Module37=PsikolojikListele
+Module38=AntropometrikSil
+Module39=PsikolojikEkle
+Module4=DayaniklilikTestSil
+Module40=Starter
+Module41=SaglikBilgileriEkle
+Module42=DikeySicramaTest
+Module43=DengeTest
+Module44=KuvvetTest
+Module45=ReaksiyonTest
+Module46=ProgramSec
+Module5=DayaniklilikTestEkle
+Module6=GelismisTestDenekAra
+Module7=ProgramAyar
+Module8=SuratTestListele
+Module9=DenekListele
+NumberOfFiles=75
+NumberOfLibraries=12
+NumberOfModules=46
+Version=9.01
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: SportExpert
+	#VersionCode: 15
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape-yatay or portrait.
+	#SupportedOrientations: landscape
+	#CanInstallToExternalStorage: True
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals
+	Dim sql As SQL
+	Dim Status As String ' değişkeni kaydetme veya güncelleme göstergesi
+End Sub
+
+Sub Globals
+
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime Then
+		sql.Initialize(File.DirDefaultExternal, "SE_DatabaseVs1.db", True)
+		'denek tablosu zaten yoksa tablo oluştur (ilk açılış)
+		If DBUtils.TableExists(sql, "Denek") = False Then
+			Wait For (TabloOlustur) Complete (Success As Boolean)
+		End If
+'		TabloOlustur
+		TabloDoldur
+	End If
+	Activity.LoadLayout("GirisPage")
+	Sleep(3000)
+	StartActivity(AnaMenu)
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	
+End Sub
+
+Sub TabloOlustur As ResumableSub
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Cinsiyet")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Iller")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Gun")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Ay")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Yil")	
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Denek")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Antropometrik")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Biyokimyasal")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS Psikolojik")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS SaglikBilgileri")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS AntranorGorusleri")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS SuratTest")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS DayaniklilikTestProgram")
+	sql.ExecNonQuery("DROP TABLE IF EXISTS DayaniklilikTest")
+
+	'DBUtils.CreateTable(sql,"Cinsiyet",CreateMap("cinsiyet_id": DBUtils.DB_INTEGER,"cinsiyet":DBUtils.DB_TEXT), "cinsiyet_id")
+	sql.ExecNonQuery("CREATE TABLE Cinsiyet(cinsiyet_id int NOT NULL, cinsiyet_adi varchar(10) NOT NULL, PRIMARY KEY(cinsiyet_id))")
+	sql.ExecNonQuery("CREATE TABLE Iller(il_id int NOT NULL, il_adi varchar(50) NOT NULL, PRIMARY KEY(il_id))")
+	sql.ExecNonQuery("CREATE TABLE Gun(gun_id int NOT NULL, gun int NOT NULL, PRIMARY KEY(gun_id))")
+	sql.ExecNonQuery("CREATE TABLE Ay(ay_id int NOT NULL, ay varchar(10) NOT NULL, PRIMARY KEY(ay_id))")
+	sql.ExecNonQuery("CREATE TABLE Yil(yil_id int NOT NULL, yil int NOT NULL, PRIMARY KEY(yil_id))")
+	
+	sql.ExecNonQuery("CREATE TABLE Denek (denek_id int NOT NULL, denek_tc bigint NOT NULL, denek_isim varchar(50) NOT NULL,cinsiyet_adi varchar(10), denek_dogumTarihi date ,il_adi varchar(50),denek_babaAdi varchar(50), denek_engelDurumu vachar(500) , denek_takimOkul varchar(500) , denek_bransSinif varchar(500) , denek_mevki varchar(500),denek_image blob, PRIMARY KEY(denek_id) FOREIGN KEY(cinsiyet_adi,il_adi) REFERENCES Cinsiyet(cinsiyet_adi,il_adi))")
+	sql.ExecNonQuery("CREATE TABLE Antropometrik (antropometrik_id int NOT NULL,denek_id int, antropometrik_tarih date,antropometrik_saat long, antropometrik_boy int ,antropometrik_kilo int ,antropometrik_elUzunlugu int, antropometrik_kulacUzunlugu int ,antropometrik_oturmaYuksekligi int,antropometrik_ayakUzunlugu int,antropometrik_deriKivrimKalinligi int, PRIMARY KEY(antropometrik_id) FOREIGN KEY(denek_id) REFERENCES Denek(denek_id))")
+	sql.ExecNonQuery("CREATE TABLE Biyokimyasal(biyokimyasal_id int NOT NULL,denek_id int,biyokimyasal_tarih date,biyokimyasal_saat long, biyokimyasal_aciklama varchar(500),PRIMARY KEY (biyokimyasal_id) FOREIGN KEY(denek_id) REFERENCES Denek(denek_id))")
+	sql.ExecNonQuery("CREATE TABLE Psikolojik( psikolojik_id int NOT NULL, denek_id int, psikolojik_tarih date, psikolojik_saat long, psikolojik_aciklama varchar(500),  PRIMARY KEY (psikolojik_id) FOREIGN KEY(denek_id) REFERENCES Denek(denek_id))")
+	sql.ExecNonQuery("CREATE TABLE SaglikBilgileri(saglikBilgileri_id int Not Null, denek_id int, saglikBilgileri_tarih date,saglikBilgileri_saat long, saglikBilgileri_hastalikSakatlik varchar(500), saglikBilgileri_aciklama varchar(500), PRIMARY KEY (saglikBilgileri_id) FOREIGN KEY(denek_id) REFERENCES Denek(denek_id))")
+	sql.ExecNonQuery("CREATE TABLE AntranorGorusleri(antranorGorüsleri_id int Not Null, denek_id int, antranorGorüsleri_tarih date, antranorGorüsleri_saat long, antranorGorüsleri_aciklama varchar(500), PRIMARY KEY (antranorGorüsleri_id) FOREIGN KEY(denek_id) REFERENCES Denek(denek_id))")
+	sql.ExecNonQuery("CREATE TABLE SuratTest(surat_id int NOT NULL, denek_id int, mod varchar(20), surat_tarih date, surat_saat long, rest_dakika Int, rest_saniye Int, result Int, gateSayisi Int, setSayisi Int, veri1 long, veri2 long, veri3 long, veri4 long, veri5 long, veri6 long,veri7 long ,veri8 long,veri9 long,veri10 long,veri11 long,veri12 long,veri13 long,veri14 long,veri15 long,veri16 long,veri17 long,veri18 long,veri19 long,veri20 long,veri21 long,veri22 long,veri23 long,veri24 long,veri25 long,veri26 long,veri27 long,veri28 long,veri29 long,veri30 long,veri31 long,veri32 long,veri33 long,veri34 long,veri35 long,veri36 long,veri37 long,veri38 long,veri39 long,veri40 long,veri41 long,veri42 long,veri43 long,veri44 long,veri45 long,veri46 long,veri47 long,veri48 long,veri49 long,veri50 long,veri51 long,veri52 long,veri53 long,veri54 long,veri55 long,veri56 long,veri57 long,veri58 long,veri59 long,veri60 long,veri61 long,veri62 long,veri63 long,veri64 long,veri65 long,veri66 long,veri67 long,veri68 long,veri69 long,veri70 long,veri71 long,veri72 long,veri73 long,veri74 long,veri75 long,veri76 long,veri77 long,veri78 long,veri79 long,veri80 long,veri81 long,veri82 long,veri83 long,veri84 long,veri85 long,veri86 long,veri87 long,veri88 long,veri89 long,veri90 long,veri91 long,veri92 long,veri93 long,veri94 long,veri95 long,veri96 long,veri97 long,veri98 long,veri99 long,veri100 long, PRIMARY KEY(surat_id) FOREIGN KEY(denek_id) REFERENCES Denek(denek_id))")
+	sql.ExecNonQuery("CREATE TABLE DayaniklilikTestProgram (program_id int NOT NULL, program_adi varchar(50), program_tarih date, program_saat long, level int, program_testTuru varchar(20), koniMesafesi1 float, hiz1 float, dakika1 int, saniye1 int, koniMesafesi2 float,hiz2 float, dakika2 int, saniye2 int, koniMesafesi3 float,hiz3 float, dakika3 int, saniye3 int, koniMesafesi4 float, hiz4 float, dakika4 int, saniye4 int, koniMesafesi5 float, hiz5 float, dakika5 int, saniye5 int, koniMesafesi6 float, hiz6 float, dakika6 int, saniye6 int, koniMesafesi7 float, hiz7 float, dakika7 int, saniye7 int, koniMesafesi8 float, hiz8 float, dakika8 int, saniye8 int, koniMesafesi9 float, hiz9 float, dakika9 int, saniye9 int, koniMesafesi10 float, hiz10 float, dakika10 int, saniye10 int, koniMesafesi11 float, hiz11 float, dakika11 int, saniye11 int, koniMesafesi12 float, hiz12 float, dakika12 int, saniye12 int, koniMesafesi13 float, hiz13 float, dakika13 int, saniye13 int, koniMesafesi14 float, hiz14 float, dakika14 int, saniye14 int, koniMesafesi15 float, hiz15 float, dakika15 int, saniye15 int, koniMesafesi16 float, hiz16 float, dakika16 int, saniye16 int, koniMesafesi17 float, hiz17 float, dakika17 int, saniye17 int, koniMesafesi18 float, hiz18 float, dakika18 int, saniye18 int, koniMesafesi19 float, hiz19 float, dakika19 int, saniye19 int, koniMesafesi20 float, hiz20 float, dakika20 int, saniye20 int, koniMesafesi21 float, hiz21 float, dakika21 int, saniye21 int , koniMesafesi22 float, hiz22 float, dakika22 int, saniye22 int ,koniMesafesi23 float, hiz23 float, dakika23 int, saniye23 int , koniMesafesi24 float, hiz24 float, dakika24 int, saniye24 int, koniMesafesi25 float,hiz25 float, dakika25 int, saniye25 int, PRIMARY KEY (program_id))")
+	sql.ExecNonQuery("CREATE TABLE DayaniklilikTest (dayaniklilik_id int NOT NULL, denekId1 int, denektc1 bigint, denekIsim1 varchar(50), denekId2 int, denektc2 bigint, denekIsim2 varchar(50),denekId3 int, denektc3 bigint, denekIsim3 varchar(50),denekId4 int, denektc4 bigint, denekIsim4 varchar(50),denekId5 int, denektc5 bigint, denekIsim5 varchar(50),denekId6 int, denektc6 bigint, denekIsim6 varchar(50),denekId7 int, denektc7 bigint, denekIsim7 varchar(50),denekId8 int, denektc8 bigint, denekIsim8 varchar(50),denekId9 int, denektc9 bigint, denekIsim9 varchar(50),denekId10 int, denektc10 bigint, denekIsim10 varchar(50), program_id int, mekik_sayisi int, dayaniklilik_tarih date, dayaniklilik_saat long, PRIMARY KEY(dayaniklilik_id) FOREIGN KEY(denekId1,denekId2,denekId3,denekId4,denekId5,denekId6,denekId7,denekId8,denekId9,denekId10,program_id) REFERENCES DayaniklilikTestProgram(denekId1,denekId2,denekId3,denekId4,denekId5,denekId6,denekId7,denekId8,denekId9,denekId10,program_id) )")
+	Log("dayanıklılık test oluşturuldu")
+	
+	Dim basariliMi As Object = sql.ExecNonQueryBatch("SportExpert")
+	Wait For (basariliMi) SportExpert_NonQueryComplete (Success As Boolean)
+	Log("Create Table işlemleri  " &Success)
+	Return True
+	
+End Sub
+
+Sub TabloDoldur
+	InsertVeriler.SehirlerTablosunuDoldur
+	InsertVeriler.CinsiyetTablosunuDoldur
+	InsertVeriler.GunTablosunuDoldur
+	InsertVeriler.AyTablosunuDoldur
+	InsertVeriler.YilTablosunuDoldur
+End Sub
+
+Sub Activity_Click
+	StartActivity(AnaMenu)
+End Sub
