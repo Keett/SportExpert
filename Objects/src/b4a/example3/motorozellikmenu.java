@@ -1,0 +1,562 @@
+package b4a.example3;
+
+
+import anywheresoftware.b4a.B4AMenuItem;
+import android.app.Activity;
+import android.os.Bundle;
+import anywheresoftware.b4a.BA;
+import anywheresoftware.b4a.BALayout;
+import anywheresoftware.b4a.B4AActivity;
+import anywheresoftware.b4a.ObjectWrapper;
+import anywheresoftware.b4a.objects.ActivityWrapper;
+import java.lang.reflect.InvocationTargetException;
+import anywheresoftware.b4a.B4AUncaughtException;
+import anywheresoftware.b4a.debug.*;
+import java.lang.ref.WeakReference;
+
+public class motorozellikmenu extends Activity implements B4AActivity{
+	public static motorozellikmenu mostCurrent;
+	static boolean afterFirstLayout;
+	static boolean isFirst = true;
+    private static boolean processGlobalsRun = false;
+	BALayout layout;
+	public static BA processBA;
+	BA activityBA;
+    ActivityWrapper _activity;
+    java.util.ArrayList<B4AMenuItem> menuItems;
+	public static final boolean fullScreen = true;
+	public static final boolean includeTitle = false;
+    public static WeakReference<Activity> previousOne;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+        mostCurrent = this;
+		if (processBA == null) {
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example3", "b4a.example3.motorozellikmenu");
+			processBA.loadHtSubs(this.getClass());
+	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
+	        BALayout.setDeviceScale(deviceScale);
+            
+		}
+		else if (previousOne != null) {
+			Activity p = previousOne.get();
+			if (p != null && p != this) {
+                BA.LogInfo("Killing previous instance (motorozellikmenu).");
+				p.finish();
+			}
+		}
+        processBA.setActivityPaused(true);
+        processBA.runHook("oncreate", this, null);
+		if (!includeTitle) {
+        	this.getWindow().requestFeature(android.view.Window.FEATURE_NO_TITLE);
+        }
+        if (fullScreen) {
+        	getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN,   
+        			android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+		
+        processBA.sharedProcessBA.activityBA = null;
+		layout = new BALayout(this);
+		setContentView(layout);
+		afterFirstLayout = false;
+        WaitForLayout wl = new WaitForLayout();
+        if (anywheresoftware.b4a.objects.ServiceHelper.StarterHelper.startFromActivity(this, processBA, wl, false))
+		    BA.handler.postDelayed(wl, 5);
+
+	}
+	static class WaitForLayout implements Runnable {
+		public void run() {
+			if (afterFirstLayout)
+				return;
+			if (mostCurrent == null)
+				return;
+            
+			if (mostCurrent.layout.getWidth() == 0) {
+				BA.handler.postDelayed(this, 5);
+				return;
+			}
+			mostCurrent.layout.getLayoutParams().height = mostCurrent.layout.getHeight();
+			mostCurrent.layout.getLayoutParams().width = mostCurrent.layout.getWidth();
+			afterFirstLayout = true;
+			mostCurrent.afterFirstLayout();
+		}
+	}
+	private void afterFirstLayout() {
+        if (this != mostCurrent)
+			return;
+		activityBA = new BA(this, layout, processBA, "b4a.example3", "b4a.example3.motorozellikmenu");
+        
+        processBA.sharedProcessBA.activityBA = new java.lang.ref.WeakReference<BA>(activityBA);
+        anywheresoftware.b4a.objects.ViewWrapper.lastId = 0;
+        _activity = new ActivityWrapper(activityBA, "activity");
+        anywheresoftware.b4a.Msgbox.isDismissing = false;
+        if (BA.isShellModeRuntimeCheck(processBA)) {
+			if (isFirst)
+				processBA.raiseEvent2(null, true, "SHELL", false);
+			processBA.raiseEvent2(null, true, "CREATE", true, "b4a.example3.motorozellikmenu", processBA, activityBA, _activity, anywheresoftware.b4a.keywords.Common.Density, mostCurrent);
+			_activity.reinitializeForShell(activityBA, "activity");
+		}
+        initializeProcessGlobals();		
+        initializeGlobals();
+        
+        BA.LogInfo("** Activity (motorozellikmenu) Create, isFirst = " + isFirst + " **");
+        processBA.raiseEvent2(null, true, "activity_create", false, isFirst);
+		isFirst = false;
+		if (this != mostCurrent)
+			return;
+        processBA.setActivityPaused(false);
+        BA.LogInfo("** Activity (motorozellikmenu) Resume **");
+        processBA.raiseEvent(null, "activity_resume");
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+			try {
+				android.app.Activity.class.getMethod("invalidateOptionsMenu").invoke(this,(Object[]) null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	public void addMenuItem(B4AMenuItem item) {
+		if (menuItems == null)
+			menuItems = new java.util.ArrayList<B4AMenuItem>();
+		menuItems.add(item);
+	}
+	@Override
+	public boolean onCreateOptionsMenu(android.view.Menu menu) {
+		super.onCreateOptionsMenu(menu);
+        try {
+            if (processBA.subExists("activity_actionbarhomeclick")) {
+                Class.forName("android.app.ActionBar").getMethod("setHomeButtonEnabled", boolean.class).invoke(
+                    getClass().getMethod("getActionBar").invoke(this), true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (processBA.runHook("oncreateoptionsmenu", this, new Object[] {menu}))
+            return true;
+		if (menuItems == null)
+			return false;
+		for (B4AMenuItem bmi : menuItems) {
+			android.view.MenuItem mi = menu.add(bmi.title);
+			if (bmi.drawable != null)
+				mi.setIcon(bmi.drawable);
+            if (android.os.Build.VERSION.SDK_INT >= 11) {
+				try {
+                    if (bmi.addToBar) {
+				        android.view.MenuItem.class.getMethod("setShowAsAction", int.class).invoke(mi, 1);
+                    }
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			mi.setOnMenuItemClickListener(new B4AMenuItemsClickListener(bmi.eventName.toLowerCase(BA.cul)));
+		}
+        
+		return true;
+	}   
+ @Override
+ public boolean onOptionsItemSelected(android.view.MenuItem item) {
+    if (item.getItemId() == 16908332) {
+        processBA.raiseEvent(null, "activity_actionbarhomeclick");
+        return true;
+    }
+    else
+        return super.onOptionsItemSelected(item); 
+}
+@Override
+ public boolean onPrepareOptionsMenu(android.view.Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    processBA.runHook("onprepareoptionsmenu", this, new Object[] {menu});
+    return true;
+    
+ }
+ protected void onStart() {
+    super.onStart();
+    processBA.runHook("onstart", this, null);
+}
+ protected void onStop() {
+    super.onStop();
+    processBA.runHook("onstop", this, null);
+}
+    public void onWindowFocusChanged(boolean hasFocus) {
+       super.onWindowFocusChanged(hasFocus);
+       if (processBA.subExists("activity_windowfocuschanged"))
+           processBA.raiseEvent2(null, true, "activity_windowfocuschanged", false, hasFocus);
+    }
+	private class B4AMenuItemsClickListener implements android.view.MenuItem.OnMenuItemClickListener {
+		private final String eventName;
+		public B4AMenuItemsClickListener(String eventName) {
+			this.eventName = eventName;
+		}
+		public boolean onMenuItemClick(android.view.MenuItem item) {
+			processBA.raiseEventFromUI(item.getTitle(), eventName + "_click");
+			return true;
+		}
+	}
+    public static Class<?> getObject() {
+		return motorozellikmenu.class;
+	}
+    private Boolean onKeySubExist = null;
+    private Boolean onKeyUpSubExist = null;
+	@Override
+	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+        if (processBA.runHook("onkeydown", this, new Object[] {keyCode, event}))
+            return true;
+		if (onKeySubExist == null)
+			onKeySubExist = processBA.subExists("activity_keypress");
+		if (onKeySubExist) {
+			if (keyCode == anywheresoftware.b4a.keywords.constants.KeyCodes.KEYCODE_BACK &&
+					android.os.Build.VERSION.SDK_INT >= 18) {
+				HandleKeyDelayed hk = new HandleKeyDelayed();
+				hk.kc = keyCode;
+				BA.handler.post(hk);
+				return true;
+			}
+			else {
+				boolean res = new HandleKeyDelayed().runDirectly(keyCode);
+				if (res)
+					return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	private class HandleKeyDelayed implements Runnable {
+		int kc;
+		public void run() {
+			runDirectly(kc);
+		}
+		public boolean runDirectly(int keyCode) {
+			Boolean res =  (Boolean)processBA.raiseEvent2(_activity, false, "activity_keypress", false, keyCode);
+			if (res == null || res == true) {
+                return true;
+            }
+            else if (keyCode == anywheresoftware.b4a.keywords.constants.KeyCodes.KEYCODE_BACK) {
+				finish();
+				return true;
+			}
+            return false;
+		}
+		
+	}
+    @Override
+	public boolean onKeyUp(int keyCode, android.view.KeyEvent event) {
+        if (processBA.runHook("onkeyup", this, new Object[] {keyCode, event}))
+            return true;
+		if (onKeyUpSubExist == null)
+			onKeyUpSubExist = processBA.subExists("activity_keyup");
+		if (onKeyUpSubExist) {
+			Boolean res =  (Boolean)processBA.raiseEvent2(_activity, false, "activity_keyup", false, keyCode);
+			if (res == null || res == true)
+				return true;
+		}
+		return super.onKeyUp(keyCode, event);
+	}
+	@Override
+	public void onNewIntent(android.content.Intent intent) {
+        super.onNewIntent(intent);
+		this.setIntent(intent);
+        processBA.runHook("onnewintent", this, new Object[] {intent});
+	}
+    @Override 
+	public void onPause() {
+		super.onPause();
+        if (_activity == null)
+            return;
+        if (this != mostCurrent)
+			return;
+		anywheresoftware.b4a.Msgbox.dismiss(true);
+        BA.LogInfo("** Activity (motorozellikmenu) Pause, UserClosed = " + activityBA.activity.isFinishing() + " **");
+        if (mostCurrent != null)
+            processBA.raiseEvent2(_activity, true, "activity_pause", false, activityBA.activity.isFinishing());		
+        processBA.setActivityPaused(true);
+        mostCurrent = null;
+        if (!activityBA.activity.isFinishing())
+			previousOne = new WeakReference<Activity>(this);
+        anywheresoftware.b4a.Msgbox.isDismissing = false;
+        processBA.runHook("onpause", this, null);
+	}
+
+	@Override
+	public void onDestroy() {
+        super.onDestroy();
+		previousOne = null;
+        processBA.runHook("ondestroy", this, null);
+	}
+    @Override 
+	public void onResume() {
+		super.onResume();
+        mostCurrent = this;
+        anywheresoftware.b4a.Msgbox.isDismissing = false;
+        if (activityBA != null) { //will be null during activity create (which waits for AfterLayout).
+        	ResumeMessage rm = new ResumeMessage(mostCurrent);
+        	BA.handler.post(rm);
+        }
+        processBA.runHook("onresume", this, null);
+	}
+    private static class ResumeMessage implements Runnable {
+    	private final WeakReference<Activity> activity;
+    	public ResumeMessage(Activity activity) {
+    		this.activity = new WeakReference<Activity>(activity);
+    	}
+		public void run() {
+            motorozellikmenu mc = mostCurrent;
+			if (mc == null || mc != activity.get())
+				return;
+			processBA.setActivityPaused(false);
+            BA.LogInfo("** Activity (motorozellikmenu) Resume **");
+            if (mc != mostCurrent)
+                return;
+		    processBA.raiseEvent(mc._activity, "activity_resume", (Object[])null);
+		}
+    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+	      android.content.Intent data) {
+		processBA.onActivityResult(requestCode, resultCode, data);
+        processBA.runHook("onactivityresult", this, new Object[] {requestCode, resultCode});
+	}
+	private static void initializeGlobals() {
+		processBA.raiseEvent2(null, true, "globals", false, (Object[])null);
+	}
+    public void onRequestPermissionsResult(int requestCode,
+        String permissions[], int[] grantResults) {
+        for (int i = 0;i < permissions.length;i++) {
+            Object[] o = new Object[] {permissions[i], grantResults[i] == 0};
+            processBA.raiseEventFromDifferentThread(null,null, 0, "activity_permissionresult", true, o);
+        }
+            
+    }
+
+
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
+public anywheresoftware.b4a.keywords.Common __c = null;
+public static String _yapilacakmotorozelliktest = "";
+public static String _motorozelliktestadi = "";
+public anywheresoftware.b4a.objects.ButtonWrapper _buttonsurattest = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _buttondayanikliliktest = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _buttondikeysicramatest = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _buttondengetest = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _buttonkuvvettest = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _buttonreaksiyontest = null;
+public anywheresoftware.b4a.objects.LabelWrapper _labelsurattest = null;
+public anywheresoftware.b4a.objects.LabelWrapper _labeldikeysicramatest = null;
+public anywheresoftware.b4a.objects.LabelWrapper _labeldengetest = null;
+public anywheresoftware.b4a.objects.LabelWrapper _labelkuvvettest = null;
+public anywheresoftware.b4a.objects.LabelWrapper _labelreaksiyontest = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _buttonanasayfa = null;
+public b4a.example.dateutils _dateutils = null;
+public b4a.example3.main _main = null;
+public b4a.example3.antranorgorussil _antranorgorussil = null;
+public b4a.example3.antranorgoruslistele _antranorgoruslistele = null;
+public b4a.example3.dayanikliliktestlistele _dayanikliliktestlistele = null;
+public b4a.example3.dayanikliliktestsil _dayanikliliktestsil = null;
+public b4a.example3.dayanikliliktestekle _dayanikliliktestekle = null;
+public b4a.example3.gelismistestdenekara _gelismistestdenekara = null;
+public b4a.example3.programayar _programayar = null;
+public b4a.example3.surattestlistele _surattestlistele = null;
+public b4a.example3.deneklistele _deneklistele = null;
+public b4a.example3.dbutils _dbutils = null;
+public b4a.example3.antranorgorusekle _antranorgorusekle = null;
+public b4a.example3.programveri _programveri = null;
+public b4a.example3.testdenekara _testdenekara = null;
+public b4a.example3.denekekleguncelle _denekekleguncelle = null;
+public b4a.example3.dayanikliliktestmenu _dayanikliliktestmenu = null;
+public b4a.example3.programlistele _programlistele = null;
+public b4a.example3.programsil _programsil = null;
+public b4a.example3.surattestayar _surattestayar = null;
+public b4a.example3.surattestekle _surattestekle = null;
+public b4a.example3.surattestsil _surattestsil = null;
+public b4a.example3.sesservice _sesservice = null;
+public b4a.example3.denekduzenlesil _denekduzenlesil = null;
+public b4a.example3.antropometriklistele _antropometriklistele = null;
+public b4a.example3.saglikbilgilerisil _saglikbilgilerisil = null;
+public b4a.example3.testmenu _testmenu = null;
+public b4a.example3.saglikbilgilerilistele _saglikbilgilerilistele = null;
+public b4a.example3.biyokimyasalekle _biyokimyasalekle = null;
+public b4a.example3.antropometrikekle _antropometrikekle = null;
+public b4a.example3.color _color = null;
+public b4a.example3.anamenu _anamenu = null;
+public b4a.example3.insertveriler _insertveriler = null;
+public b4a.example3.biyokimyasallistele _biyokimyasallistele = null;
+public b4a.example3.biyokimyasalsil _biyokimyasalsil = null;
+public b4a.example3.psikolojiksil _psikolojiksil = null;
+public b4a.example3.psikolojiklistele _psikolojiklistele = null;
+public b4a.example3.antropometriksil _antropometriksil = null;
+public b4a.example3.psikolojikekle _psikolojikekle = null;
+public b4a.example3.starter _starter = null;
+public b4a.example3.saglikbilgileriekle _saglikbilgileriekle = null;
+public b4a.example3.dikeysicramatest _dikeysicramatest = null;
+public b4a.example3.dengetest _dengetest = null;
+public b4a.example3.kuvvettest _kuvvettest = null;
+public b4a.example3.reaksiyontest _reaksiyontest = null;
+public b4a.example3.programsec _programsec = null;
+public static String  _activity_create(boolean _firsttime) throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
+RDebugUtils.currentLine=34734080;
+ //BA.debugLineNum = 34734080;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=34734082;
+ //BA.debugLineNum = 34734082;BA.debugLine="Activity.LoadLayout(\"MotorOzellikMenuPage\")";
+mostCurrent._activity.LoadLayout("MotorOzellikMenuPage",mostCurrent.activityBA);
+RDebugUtils.currentLine=34734084;
+ //BA.debugLineNum = 34734084;BA.debugLine="End Sub";
+return "";
+}
+public static String  _activity_pause(boolean _userclosed) throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+RDebugUtils.currentLine=34865152;
+ //BA.debugLineNum = 34865152;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+RDebugUtils.currentLine=34865154;
+ //BA.debugLineNum = 34865154;BA.debugLine="End Sub";
+return "";
+}
+public static String  _activity_resume() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
+RDebugUtils.currentLine=34799616;
+ //BA.debugLineNum = 34799616;BA.debugLine="Sub Activity_Resume";
+RDebugUtils.currentLine=34799618;
+ //BA.debugLineNum = 34799618;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttonanasayfa_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttonanasayfa_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttonanasayfa_click", null));}
+RDebugUtils.currentLine=35323904;
+ //BA.debugLineNum = 35323904;BA.debugLine="Sub ButtonAnasayfa_Click";
+RDebugUtils.currentLine=35323905;
+ //BA.debugLineNum = 35323905;BA.debugLine="StartActivity(AnaMenu)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._anamenu.getObject()));
+RDebugUtils.currentLine=35323906;
+ //BA.debugLineNum = 35323906;BA.debugLine="Activity.Finish";
+mostCurrent._activity.Finish();
+RDebugUtils.currentLine=35323907;
+ //BA.debugLineNum = 35323907;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttondayanikliliktest_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttondayanikliliktest_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttondayanikliliktest_click", null));}
+RDebugUtils.currentLine=34996224;
+ //BA.debugLineNum = 34996224;BA.debugLine="Sub ButtonDayaniklilikTest_Click";
+RDebugUtils.currentLine=34996225;
+ //BA.debugLineNum = 34996225;BA.debugLine="yapilacakMotorOzellikTest = \"DayaniklilikTest\"";
+_yapilacakmotorozelliktest = "DayaniklilikTest";
+RDebugUtils.currentLine=34996226;
+ //BA.debugLineNum = 34996226;BA.debugLine="motorOzellikTestAdi = \"Dayanıklılık Testi\"";
+_motorozelliktestadi = "Dayanıklılık Testi";
+RDebugUtils.currentLine=34996227;
+ //BA.debugLineNum = 34996227;BA.debugLine="StartActivity(DayaniklilikTestMenu)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._dayanikliliktestmenu.getObject()));
+RDebugUtils.currentLine=34996229;
+ //BA.debugLineNum = 34996229;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttondengetest_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttondengetest_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttondengetest_click", null));}
+RDebugUtils.currentLine=35127296;
+ //BA.debugLineNum = 35127296;BA.debugLine="Sub ButtonDengeTest_Click";
+RDebugUtils.currentLine=35127297;
+ //BA.debugLineNum = 35127297;BA.debugLine="yapilacakMotorOzellikTest = \"DengeTest\"";
+_yapilacakmotorozelliktest = "DengeTest";
+RDebugUtils.currentLine=35127298;
+ //BA.debugLineNum = 35127298;BA.debugLine="motorOzellikTestAdi = \"Denge Testi\"";
+_motorozelliktestadi = "Denge Testi";
+RDebugUtils.currentLine=35127299;
+ //BA.debugLineNum = 35127299;BA.debugLine="StartActivity(DengeTest)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._dengetest.getObject()));
+RDebugUtils.currentLine=35127301;
+ //BA.debugLineNum = 35127301;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttondikeysicramatest_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttondikeysicramatest_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttondikeysicramatest_click", null));}
+RDebugUtils.currentLine=35061760;
+ //BA.debugLineNum = 35061760;BA.debugLine="Sub ButtonDikeySicramaTest_Click";
+RDebugUtils.currentLine=35061761;
+ //BA.debugLineNum = 35061761;BA.debugLine="yapilacakMotorOzellikTest = \"DikeySicramaTest\"";
+_yapilacakmotorozelliktest = "DikeySicramaTest";
+RDebugUtils.currentLine=35061762;
+ //BA.debugLineNum = 35061762;BA.debugLine="motorOzellikTestAdi = \"Dikey Sıçrama Testi\"";
+_motorozelliktestadi = "Dikey Sıçrama Testi";
+RDebugUtils.currentLine=35061763;
+ //BA.debugLineNum = 35061763;BA.debugLine="StartActivity(DikeySicramaTest)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._dikeysicramatest.getObject()));
+RDebugUtils.currentLine=35061765;
+ //BA.debugLineNum = 35061765;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttonkuvvettest_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttonkuvvettest_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttonkuvvettest_click", null));}
+RDebugUtils.currentLine=35192832;
+ //BA.debugLineNum = 35192832;BA.debugLine="Sub ButtonKuvvetTest_Click";
+RDebugUtils.currentLine=35192833;
+ //BA.debugLineNum = 35192833;BA.debugLine="yapilacakMotorOzellikTest = \"KuvvetTest\"";
+_yapilacakmotorozelliktest = "KuvvetTest";
+RDebugUtils.currentLine=35192834;
+ //BA.debugLineNum = 35192834;BA.debugLine="motorOzellikTestAdi = \"Kuvvet Testi\"";
+_motorozelliktestadi = "Kuvvet Testi";
+RDebugUtils.currentLine=35192835;
+ //BA.debugLineNum = 35192835;BA.debugLine="StartActivity(KuvvetTest)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._kuvvettest.getObject()));
+RDebugUtils.currentLine=35192837;
+ //BA.debugLineNum = 35192837;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttonreaksiyontest_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttonreaksiyontest_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttonreaksiyontest_click", null));}
+RDebugUtils.currentLine=35258368;
+ //BA.debugLineNum = 35258368;BA.debugLine="Sub ButtonReaksiyonTest_Click";
+RDebugUtils.currentLine=35258369;
+ //BA.debugLineNum = 35258369;BA.debugLine="yapilacakMotorOzellikTest = \"ReaksiyonTest\"";
+_yapilacakmotorozelliktest = "ReaksiyonTest";
+RDebugUtils.currentLine=35258370;
+ //BA.debugLineNum = 35258370;BA.debugLine="motorOzellikTestAdi = \"Reaksiyon Testi\"";
+_motorozelliktestadi = "Reaksiyon Testi";
+RDebugUtils.currentLine=35258371;
+ //BA.debugLineNum = 35258371;BA.debugLine="StartActivity(ReaksiyonTest)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._reaksiyontest.getObject()));
+RDebugUtils.currentLine=35258373;
+ //BA.debugLineNum = 35258373;BA.debugLine="End Sub";
+return "";
+}
+public static String  _buttonsurattest_click() throws Exception{
+RDebugUtils.currentModule="motorozellikmenu";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "buttonsurattest_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "buttonsurattest_click", null));}
+RDebugUtils.currentLine=34930688;
+ //BA.debugLineNum = 34930688;BA.debugLine="Sub ButtonSuratTest_Click";
+RDebugUtils.currentLine=34930689;
+ //BA.debugLineNum = 34930689;BA.debugLine="yapilacakMotorOzellikTest = \"SuratTest\"";
+_yapilacakmotorozelliktest = "SuratTest";
+RDebugUtils.currentLine=34930690;
+ //BA.debugLineNum = 34930690;BA.debugLine="motorOzellikTestAdi = \"Sürat (Sprint) Testi\"";
+_motorozelliktestadi = "Sürat (Sprint) Testi";
+RDebugUtils.currentLine=34930691;
+ //BA.debugLineNum = 34930691;BA.debugLine="StartActivity(SuratTestListele)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._surattestlistele.getObject()));
+RDebugUtils.currentLine=34930693;
+ //BA.debugLineNum = 34930693;BA.debugLine="End Sub";
+return "";
+}
+}
